@@ -5,7 +5,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 console.log('process.env.NODE_ENV=', process.env.NODE_ENV) // 打印环境变量
 
 const configDEV = {
-	mode:'development',//模式
+	mode:'none',//模式
 	entry:'./src/index.js',//入口文件
 	output:{
 		filename:'bundleDEV.js',//输出文件名
@@ -106,6 +106,36 @@ const configDEV = {
 			{
 				test:/\.(s[ac]|c)ss$/i,//匹配所有css或scss文件
 				use:[MiniCssExtractPlugin.loader,'css-loader', 'postcss-loader','sass-loader']
+			},
+			// 添加babel配置
+			// {
+      //   test: /\.js$/i,
+      //   use: [
+      //     {
+      //       loader: 'babel-loader',
+      //       options: {
+      //         presets: [
+      //           '@babel/preset-env'//babel预设，转换大部分ES6以上语法和api
+      //         ],
+      //       }
+      //     }
+      //   ]
+      // },
+			// 如此配置，使用.babelrc里的配置
+			{
+				test: /\.[tj]sx?$/i,
+				exclude: [
+				/(node_modules|bower_components)/
+				],
+				use: [
+					/* config.module.rule('script').use('1') */
+					{
+						loader: 'babel-loader',
+						options: {
+							cacheDirectory: true
+						}
+					}
+				]
 			},
     ]
   },

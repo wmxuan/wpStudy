@@ -4,13 +4,22 @@
   "description": "webpack study",
   "main": "index.js",
   "dependencies": {
+    "@babel/cli": "^7.17.10",
     "css-loader": "^6.7.1",
     "extract-text-webpack-plugin": "^3.0.2",
     "webpack": "^5.72.1",
     "webpack-cli": "^4.9.2"
   },
   "devDependencies": {
+    "@babel/core": "^7.18.2",
+    "@babel/plugin-proposal-class-properties": "^7.17.12",
+    "@babel/plugin-proposal-decorators": "^7.18.2",
+    "@babel/polyfill": "^7.12.1",
+    "@babel/preset-env": "^7.18.2",
+    "babel-loader": "^8.2.5",
+    "babel-plugin-transform-runtime": "^6.23.0",
     "clean-webpack-plugin": "^4.0.0",
+    "core-js": "^3.22.7",
     "cross-env": "^7.0.3",
     "file-loader": "^6.2.0",
     "html-webpack-plugin": "^5.5.0",
@@ -27,8 +36,10 @@
   },
   "scripts": {
     "dev": "cross-env NODE_ENV=dev webpack serve --mode development",
+    "devNone": "cross-env NODE_ENV=dev webpack --mode none",
     "test": "cross-env NODE_ENV=test webpack --mode production",
-    "build": "cross-env NODE_ENV=prod webpack --mode production"
+    "build": "cross-env NODE_ENV=prod webpack --mode production",
+    "babel": "babel ./src/index.js --watch --out-file test-compiled.js"
   },
   "repository": {
     "type": "git",
