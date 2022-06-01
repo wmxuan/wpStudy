@@ -11,6 +11,7 @@ const configDEV = {
 		filename:'bundleDEV.js',//输出文件名
 		path:path.join(__dirname,'dist')//输出文件目录
 	},
+	devtool: 'source-map',//配置scourceMap
 	module: { 
     rules: [ // 转换规则
       // {
@@ -146,6 +147,7 @@ const configDEV = {
 		new CleanWebpackPlugin(),//每次打包前，自动将打包目录清空
 		new MiniCssExtractPlugin({//将css通过css文件的形式，引入到页面中
 			filename: '[name].[hash:8].css'//打包后的文件，使用[原文件名].[8位哈希].css的格式来命名
+			// []括起来的内容，即为占位符
 		})
 	],
 	devServer: {
